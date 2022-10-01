@@ -1,0 +1,47 @@
+.taskCard{
+    background-color: white;
+    border-radius: var(--border-radius);
+    padding: 1rem;
+    margin: .5rem;
+    width: 100%;
+    min-width: 200px;
+}
+.titleContainer{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+    .title{
+        font-weight: 600;
+    }
+    .deleteButton{
+        background-color: transparent;
+        border: none;
+        cursor: pointer;
+        user-select: none;
+        font-weight: 900;
+        color: var(--button-background-color);
+        font-size: 1.5rem;
+    }
+.date{
+    margin: 2px;
+}
+.owner{
+    margin: 2px;    
+}
+.statusContainer{
+    display: flex;
+}   
+    .priority,
+    .state{
+        margin-right: .3rem;
+        padding: .3rem;
+        background-color: var(--state-new);
+        border-radius: var(--border-radius);
+        border: none;
+        color: var(--button-color);
+    }
+
+.description{
+    overflow: hidden;
+}

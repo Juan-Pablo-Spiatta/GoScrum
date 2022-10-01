@@ -1,0 +1,114 @@
+.container{
+    display: flex;
+    flex-direction: column;
+}
+.formCard{
+    display: flex;
+    flex-direction: column;
+    padding: 0 1rem 1rem 1rem;
+    margin: 1rem;
+}
+.title{
+    font-size: 1.5rem;
+    font-weight: 600;
+    padding: 0 1rem 0 1rem;
+    margin: 1rem 1rem 0 1rem;
+}
+.labels{
+    display: flex;
+    flex-direction: column;
+    padding: 2px 0;
+    margin: 2px 0 5px 0;
+}
+    .labels > input{
+        display: flex;
+        outline: none;
+        border: var(--input-border);
+        border-radius: var(--border-radius);
+        width: 100%;
+        padding: 7px 10px;
+        font-size: 1rem;
+    }
+    .labels > select{
+        display: flex;
+        outline: none;
+        cursor: pointer;
+        border: var(--input-border);
+        border-radius: var(--border-radius);
+        width: 100%;
+        padding: 8px;
+    }
+    h4{
+        border-radius: var(--border-radius);
+        width: 100%;
+        font-weight: 400;
+        font-size: 15px;
+    }
+    .errorMessage{
+        color: var(--error-color);
+        font-weight: 600;
+        font-size: 12px;
+    }
+.textareaContainer{
+    padding: 2px 0;
+    margin: 2px 0 5px 0;
+}
+    .textareaContainer > textarea{
+        display: flex;
+        outline: none;
+        resize: none;
+        border: var(--input-border);
+        border-radius: var(--border-radius);
+        width: 100%;
+        padding: 8px 10px;
+    }
+.buttonContainer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    margin: 5px 0;
+}
+    .buttonContainer > button{
+        border: none;
+        background-color: var(--button-background-color);
+        border-radius: var(--border-radius);
+        color: var(--button-color);
+        width: 100%;
+        height: 40px;
+    }
+    .buttonContainer > button:active{
+        background-color: var(--button-focus-background-color);
+        color: var(--button-color);
+    }
+
+@media screen and (min-width: 1200px){
+    .formCard{
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1rem;
+        max-width: none;
+        min-width: none;
+    }
+    .textareaContainer{
+        grid-column: 1/4;
+    }
+    .buttonContainer{
+        grid-column: 1/4;
+    }
+}
+@media screen and (min-width: 650px) and (max-width: 1000px){
+    .formCard{
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1rem;
+        max-width: none;
+        min-width: none;
+    }
+    .textareaContainer{
+        grid-column: 1/4;
+    }
+    .buttonContainer{
+        grid-column: 1/4;
+    }
+}

@@ -1,0 +1,129 @@
+.container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+.formCard{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-color: var(--card-background-color);
+    border-radius: var(--border-radius);
+    box-shadow: var(--card-box-shadow);
+    padding: 1rem;
+    margin: 1rem;
+    min-width: 250px;
+    width: 350px;
+}
+.title{
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+.labels{
+    display: flex;
+    flex-direction: column;
+    padding: 2px 0;
+    margin: 2px 0 5px 0;
+}
+.labelChecked{
+    padding: 2px 0;
+    margin: 2px 0 5px 0;
+}
+    .labelChecked > span{
+        font-size: .8rem;
+        font-weight: bolder;
+    }
+    .labels > input{
+        display: flex;
+        outline: none;
+        border: var(--input-border);
+        border-radius: var(--border-radius);
+        width: 100%;
+        padding: 8px;
+    }
+    .labels > select{
+        display: flex;
+        outline: none;
+        cursor: pointer;
+        border: var(--input-border);
+        border-radius: var(--border-radius);
+        width: 100%;
+        padding: 8px;
+    }
+    .labels > h4{
+        border-radius: var(--border-radius);
+        width: 100%;
+        font-weight: 400;
+        font-size: 15px;
+    }
+    .errorMessage{
+        color: var(--error-color);
+        font-weight: 600;
+        font-size: 12px;
+    }
+.buttonContainer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    margin: 5px 0;
+}
+    .buttonContainer > button{
+        border: none;
+        background-color: var(--button-background-color);
+        border-radius: var(--border-radius);
+        color: var(--button-color);
+        width: 100%;
+        height: 40px;
+    }
+    .buttonContainer > button:active{
+        background-color: var(--button-focus-background-color);
+        color: var(--button-color);
+    }
+.registerLink{
+    text-decoration: none;
+    color: var(--font-color-primary);
+    margin: 2px 0;
+    padding: 2px 0;
+}
+
+.checkbox:focus{
+    outline: none;
+}
+
+input[type="checkbox"]{
+    position: relative;
+    -webkit-appearance: none;
+    cursor: pointer;
+    transition: background-color .15s ease;
+    background-color: #FFC5BE;
+    border-radius: var(--border-radius);
+    width: 20px;
+    height: 10px;
+    margin: 0 5px;
+}
+input[type="checkbox"]::before{
+    position: absolute;
+    transition: left .15s ease, background-color .15s ease;
+    content: '';
+    border-radius: 100%;
+    top: -2px;
+    left: -5px;
+    width: 14px;
+    height: 14px;
+    background-color:var(--card-background-color);
+    box-shadow: var(--card-box-shadow);
+}
+input:checked[type="checkbox"]{
+    background-color: #FFC5BE;
+}
+input:checked[type="checkbox"]::before{
+    background-color: var(--button-background-color);
+    left: 9px;
+}
+
+input:checked[type="checkbox"] > {
+    background-color: #FFC5BE;
+}
+

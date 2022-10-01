@@ -1,0 +1,52 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200;0,400;0,600;1,200;1,400;1,600;1,800;1,900&display=swap');
+:root {
+  --primary-font-family: 'Nunito', Helvetica, Arial, sans-serif;
+  --font-color-primary: black;
+
+  --border-radius: 5px;
+  --body-background-color: #f3f3f3;
+  
+  --card-background-color: #fff;
+  --card-box-shadow: 0 0 15px #cecece;
+  --card-box-shadow-bottom: 0 10px 15px #cecece;
+
+  --button-background-color: #ff442b;
+  --button-focus-background-color: #fd614c;
+  --button-color: #fff;
+
+  --input-border: 1px solid #cccccc;
+  --global-border: 1px solid #cccccc;
+
+  --error-color: #f33022;
+  --warning-color: #ffa726;
+  --success-color: #66bb6a;
+
+  --state-new: rgb(109, 235, 109);
+  --state-pregress: rgb(144, 178, 243);
+  --state-finished: rgb(236, 145, 183);
+}
+
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: var(--primary-font-family);
+}
+
+body{
+  background-color: var(--body-background-color);
+  max-height: 100vh;
+}
+
+main{
+  padding-top: 50px;
+}
+
+input:focus,
+textarea:focus{
+  outline: 2px #ff442b solid
+}
+
+::-webkit-scrollbar {
+  display: none;
+}
