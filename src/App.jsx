@@ -16,7 +16,7 @@ import './App.css'
 
 const RequireAuth = ({ children }) => {
   if(!localStorage.getItem('logged')){
-    return <Navigate to="/login" replace={true} />
+    return <Navigate to="/GoScrum/login" replace={true} />
   } else{
     return children
   } 
