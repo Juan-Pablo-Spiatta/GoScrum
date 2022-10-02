@@ -16,7 +16,7 @@ import './App.css'
 
 const RequireAuth = ({ children }) => {
   if(!localStorage.getItem('logged')){
-    return <Navigate to="/GoScrum/login" replace={true} />
+    return <Navigate to="/login" replace={true} />
   } else{
     return children
   } 
@@ -38,26 +38,26 @@ function App() {
 
       <AnimatePresence>
         <Routes location={ location } key={ location.pathname }>
-          <Route path="/GoScrum/" element={ 
+          <Route path="/" element={ 
             <motion.div className='page' initial='out' animate='in' exit='out' variants={ pageTransition } > 
               <RequireAuth>
                 <Home /> 
               </RequireAuth>
             </motion.div>
           } />
-          <Route path="/GoScrum/pruebas" element={ 
+          <Route path="/pruebas" element={ 
             <motion.div className='page' initial='out' animate='in' exit='out' variants={ pageTransition } > 
               <RequireAuth>
                 <Pruebas /> 
               </RequireAuth>
             </motion.div>
           } />
-          <Route path="/GoScrum/login" element={
+          <Route path="/login" element={
             <motion.div className='page' initial='out' animate='in' exit='out' variants={ pageTransition } > 
               <Login /> 
             </motion.div>
           }/>
-          <Route path="/GoScrum/register" element={ 
+          <Route path="/register" element={ 
             <motion.div className='page' initial='out' animate='in' exit='out' variants={ pageTransition } > 
               <Register /> 
             </motion.div> 
