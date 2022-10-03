@@ -156,7 +156,7 @@ function Register() {
                         showConfirmButton: false,
                         timer: 1500
                     })
-                    navigate('/login')
+                    navigate('/GoScrum/login')
                 }
             }
         )
@@ -327,7 +327,7 @@ function Register() {
             <div className={ style.buttonContainer }> 
               <button type='submit'> Registrarme </button> 
             </div>
-            <Link className={ style.registerLink } to="/login">Iniciar sesión</Link>
+            <Link className={ style.registerLink } to="/GoScrum/login">Iniciar sesión</Link>
         </form>
     </main>
   )

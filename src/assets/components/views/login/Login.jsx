@@ -41,7 +41,7 @@ function Login() {
             localStorage.setItem('logged', 'yes')
             localStorage.setItem('teamID', response.data.teamID)
             localStorage.setItem('userName', response.data.userName)
-            navigate("/")
+            navigate("/GoScrum/")
           }
         }
         )
@@ -83,7 +83,7 @@ function Login() {
             <div className={ style.buttonContainer }> 
               <button type='submit'> Enviar </button> 
             </div>
-            <Link className={ style.registerLink } to="/register">Registrarme</Link>
+            <Link className={ style.registerLink } to="/GoScrum/register">Registrarme</Link>
         </form>
     </main>
   )
