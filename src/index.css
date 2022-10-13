@@ -17,13 +17,16 @@
   --input-border: 1px solid #cccccc;
   --global-border: 1px solid #cccccc;
 
-  --error-color: #f33022;
+  --danger-color: #f33022;
   --warning-color: #ffa726;
   --success-color: #66bb6a;
 
-  --state-new: rgb(109, 235, 109);
-  --state-pregress: rgb(144, 178, 243);
-  --state-finished: rgb(236, 145, 183);
+  --state-new: #ff442b;
+  --state-new-2: #ffaea3;
+  --state-progress: #ffa726;
+  --state-progress-2: #ffdaa2;
+  --state-finished: #66bb6a;
+  --state-finished-2: #a9e4ac;
 }
 
 *{

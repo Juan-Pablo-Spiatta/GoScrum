@@ -14,8 +14,6 @@ const API_ENDPOINT = import.meta.env.VITE_API_ENDPOINT
 
 function TaskForm({forceUpdate}) {
 
-    
-
     const priorityOptions = [
         { value: "Alta", label: "Alta"},
         { value: "Media", label: "Media"},
@@ -36,11 +34,11 @@ function TaskForm({forceUpdate}) {
     }
     const validationSchema = Yup.object().shape({
         title: Yup.string()
-            .required('El titulo es requerido'),
+            .required('*El titulo es requerido'),
         priority: Yup.string()
-            .required('Seleccione la prioridad'),
+            .required('*Seleccione la prioridad'),
         state: Yup.string()
-            .required('Seleccione el estado'),
+            .required('*Seleccione el estado'),
     })
     
     const onSubmit = () => {
@@ -49,11 +47,11 @@ function TaskForm({forceUpdate}) {
         const [ hours, minutes ] = [ date.getHours(), date.getMinutes()<10 ? `0${date.getMinutes()}` : `${date.getMinutes()}` ]
         axios({
             method: 'post',
-            url: `${API_ENDPOINT}api/team/tasks/${localStorage.getItem('teamID')}`,
+            url: `${API_ENDPOINT}api/team/tasks/${sessionStorage.getItem('teamID')}`,
             data: {
                 title: values.title,
                 date: `${day}/${month}/${year} ${hours}:${minutes} hs`,
-                owner: localStorage.getItem('userName'),
+                owner: sessionStorage.getItem('userName'),
                 priority: values.priority,
                 state: values.state,
                 description: values.description,

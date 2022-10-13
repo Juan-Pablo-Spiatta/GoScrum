@@ -38,9 +38,9 @@ function Login() {
     .then(
         response => {
           if (response.status === 200) {
-            localStorage.setItem('logged', 'yes')
-            localStorage.setItem('teamID', response.data.teamID)
-            localStorage.setItem('userName', response.data.userName)
+            sessionStorage.setItem('logged', 'yes')
+            sessionStorage.setItem('teamID', response.data.teamID)
+            sessionStorage.setItem('userName', response.data.userName)
             navigate("/GoScrum/")
           }
         }

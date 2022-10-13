@@ -11,6 +11,7 @@ import 'react-loading-skeleton/dist/skeleton.css'
 import style from './Tasks.module.css'
 
 import editIcon from '../../img/icons/edit.svg'
+import trashIcon from '../../img/icons/trash-2.svg'
 
 const API_ENDPOINT = import.meta.env.VITE_API_ENDPOINT
 
@@ -35,8 +36,8 @@ function Tasks({data = {}, forceUpdate}) {
             method: 'put',
             url: `${API_ENDPOINT}api/team/tasks`,
             data: {
-                userName: localStorage.getItem('userName'),
-                teamID: localStorage.getItem('teamID'),
+                userName: sessionStorage.getItem('userName'),
+                teamID: sessionStorage.getItem('teamID'),
                 taskData: {
                     state: values.state,
                     newState: values.newState,
@@ -80,8 +81,8 @@ function Tasks({data = {}, forceUpdate}) {
                     method: 'delete',
                     url: `${API_ENDPOINT}api/team/tasks`,
                     data: {
-                        userName: localStorage.getItem('userName'),
-                        teamID: localStorage.getItem('teamID'),
+                        userName: sessionStorage.getItem('userName'),
+                        teamID: sessionStorage.getItem('teamID'),
                         taskData: values
                     }
                 })
@@ -142,31 +143,33 @@ function Tasks({data = {}, forceUpdate}) {
             </>
         )
     } else{
-        {console.log(values)}
         return (
             <li className={ style.taskCard }>
                 <div className={ style.firstLineContainer }>
                     <div className={ style.titleContainer }>
-                        <h3 className={ style.title }>{ values.title }</h3>
-                        {
-                            localStorage.getItem('userName') === data.owner? 
-                            <button onClick={ () => setEditingTask(true)}>
+                        <h3 className={ style.title }>{ data.title }</h3>
+                    </div>
+                    {
+                        sessionStorage.getItem('userName') === data.owner? 
+                        <div className={ style.buttonsContainer }>
+                            <button className={ style.editButton } onClick={ () => setEditingTask(true)}>
                                 <img className={ style.editIcon } src={editIcon} alt="edit-icon" />
                             </button>
-                            : <></>
-                        }
-                        
-                    </div>
-                    <button onClick={ deleteTask } className={ style.deleteButton }>x</button>
+                            <button onClick={ deleteTask } className={ style.deleteButton }>
+                                <p>x</p>
+                            </button>
+                        </div>
+                        : <></>
+                    }
                 </div>
                 <h5 className={ style.date }>Fecha de creación: {data.date}</h5>
                 <h6 className={ style.owner }>Creada por: {data.owner}</h6>
                 <div className={ style.statusContainer }>
-                    <button className={ style.state }>{ values.newState? values.newState : values.state }</button>
-                    <button className={ style.priority }>{values.priority}</button>
+                    <button className={ style.state }>{ data.newState? data.newState : data.state }</button>
+                    <button className={ style.priority }>{data.priority}</button>
                 </div>
                 <p className={ style.description }>
-                    {String(values.description).substring(0, 120)}...
+                    {String(data.description).substring(0, 120)}...
                 </p>
             </li>
         )

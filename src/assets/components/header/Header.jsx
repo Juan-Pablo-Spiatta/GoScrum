@@ -8,7 +8,7 @@ function Header() {
   const navigate = useNavigate()
 
   const handleLogOut = () => {
-    if( localStorage.getItem("logged")){
+    if( sessionStorage.getItem("logged")){
       Swal.fire({
         title: 'Estas seguro que quieres cerrar sesión?',
         showCancelButton: true,
@@ -18,10 +18,10 @@ function Header() {
         cancelButtonText: 'Cancelar'
       }).then((result) => {
         if (result.isConfirmed) {
-          localStorage.removeItem('logged')
-          localStorage.removeItem('teamID')
-          localStorage.removeItem('userName')
-          localStorage.removeItem('teamTasks')
+          sessionStorage.removeItem('logged')
+          sessionStorage.removeItem('teamID')
+          sessionStorage.removeItem('userName')
+          sessionStorage.removeItem('teamTasks')
           navigate('/GoScrum/login')
         }
       })

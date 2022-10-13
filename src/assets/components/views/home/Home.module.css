@@ -33,19 +33,65 @@
     flex-direction: column;
     grid-template-columns: repeat(3, 1fr);
 }
-    .statusList > article > h4{
+    .statusList > article> ul > button{
         text-align: center;
+        border: none;
+        outline: none;
+        font-weight: bolder;
+        border-radius: var(--border-radius) var(--border-radius) 0 0;
+        color: var(--button-color);
+        width: 100%;
         font-size: 1.3rem;
+        padding: 1rem;
     }
+
+
+    .newTasksButton{
+        background-color: var(--state-new);
+    }
+    .inProgressTasksButton{
+        background-color: var(--state-progress);
+    }
+    .finishedTasksButton{
+        background-color: var(--state-finished);
+    }
+
+
+    .articleNew{
+        border-radius: var(--border-radius);
+        margin: 1rem 0;
+        background-color: var(--state-new-2);
+    }
+    .articleInProgress{
+        border-radius: var(--border-radius);
+        margin: 1rem 0;
+        background-color: var(--state-progress-2);
+    }
+    .articleFinished{
+        border-radius: var(--border-radius);
+        margin: 1rem 0;
+        background-color: var(--state-finished-2);
+    }
+
     .new,
     .process,
     .finished{
         display: block;
         flex-wrap: wrap;;
         list-style: none;
-        padding: .5rem;
+        padding-bottom: .5rem;
         margin: .5rem;
         border-radius: var(--border-radius);
+    }
+
+    .new{
+        background-color: var(--state-new);
+    }
+    .process{
+        background-color: var(--state-progress);
+    }
+    .finished{
+        background-color: var(--state-finished);
     }
 
 @media screen and (min-width: 1200px){

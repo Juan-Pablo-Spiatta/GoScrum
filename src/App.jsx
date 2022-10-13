@@ -15,7 +15,7 @@ const Error404 = lazy( () => import('./assets/components/views/error404/Error404
 import './App.css'
 
 const RequireAuth = ({ children }) => {
-  if(!localStorage.getItem('logged')){
+  if(!sessionStorage.getItem('logged')){
     return <Navigate to="/GoScrum/login" replace={true} />
   } else{
     return children

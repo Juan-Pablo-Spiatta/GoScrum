@@ -1,10 +1,11 @@
 .taskCard{
+    overflow: hidden;
     background-color: white;
-    border-radius: var(--border-radius);
-    padding: 1rem;
+    padding: .5rem  1rem;
     width: 100%;
     min-width: 200px;
-    animation: .5s ease-in appear;
+    margin: 5px 0;
+    animation: appear ease 1s ;
 }
 .firstLineContainer{
     display: flex;
@@ -15,6 +16,9 @@
         display: flex;
         align-items: center;
     }
+    .buttonsContainer{
+        display: flex;
+    }
         .title{
             font-weight: 600;
         }
@@ -24,15 +28,42 @@
             height: 16px;
             margin: .4rem;
         }
-    .deleteButton{
-        background-color: transparent;
-        border: none;
-        cursor: pointer;
-        user-select: none;
-        font-weight: 900;
-        color: var(--button-background-color);
-        font-size: 1.3rem;
-    }
+        .deleteIcon{
+            cursor: pointer;
+            width: 20px;
+            height: 20px;
+            margin: .4rem;
+        }
+        .editButton{
+            display: flex;
+            align-items: center;
+            border: none;
+            outline: none;
+            background-color: transparent;
+            cursor: pointer;
+            width: 28px;
+            height: 28px;
+            border-radius: 100%;
+            background-color: var(--button-background-color);
+            margin-left: .25rem;
+
+        }
+        .deleteButton{
+            text-align: center;
+            background-color: transparent;
+            border: none;
+            outline: none;
+            cursor: pointer;
+            user-select: none;
+            font-weight: 900;
+            width: 28px;
+            height: 28px;
+            border-radius: 100%;
+            color: var(--button-color);
+            background-color: var(--button-background-color);
+            margin-left: .25rem;
+            font-size: 1rem;
+        }
 .date{
     margin: 2px;
 }
@@ -58,9 +89,8 @@
 
 @keyframes appear {
     from{
-        opacity: 0;
-    }
-    to{
+        opacity: .1;
+    } to{
         opacity: 1;
     }
 }
