@@ -1,7 +1,7 @@
 // Libraries
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-import { HashRouter as Router } from 'react-router-dom'
+import { BrowserRouter as Router } from 'react-router-dom'
 // Redux
 import { Provider } from 'react-redux'
 import { store } from './store/store.js'
