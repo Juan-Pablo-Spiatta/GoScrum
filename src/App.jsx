@@ -7,7 +7,7 @@ import Login from './assets/components/views/login/Login.jsx'
 import Register from './assets/components/views/register/Register.jsx'
 import Home from './assets/components/views/home/Home.jsx'
 import Loading from './assets/components/views/loading/Loading.jsx'
-import Pruebas from './assets/components/views/pruebas/Pruebas.jsx'
+import EditTask from './assets/components/views/editTask/EditTask.jsx'
 import Header from './assets/components/header/Header.jsx'
 // Lazy Imports
 const Error404 = lazy( () => import('./assets/components/views/error404/Error404.jsx'))
@@ -53,6 +53,11 @@ function App() {
           <Route path="/GoScrum/register" element={ 
             <motion.div className='page' initial='out' animate='in' exit='out' variants={ pageTransition } > 
               <Register /> 
+            </motion.div> 
+          }/>
+          <Route path="/GoScrum/task/edit" element={ 
+            <motion.div className='page' initial='out' animate='in' exit='out' variants={ pageTransition } > 
+              <EditTask />
             </motion.div> 
           }/>
           <Route path="*" element={ 

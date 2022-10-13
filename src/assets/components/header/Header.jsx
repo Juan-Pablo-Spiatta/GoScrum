@@ -22,7 +22,7 @@ function Header() {
           localStorage.removeItem('teamID')
           localStorage.removeItem('userName')
           localStorage.removeItem('teamTasks')
-          navigate('/login')
+          navigate('/GoScrum/login')
         }
       })
     }

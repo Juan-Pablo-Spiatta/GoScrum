@@ -9,23 +9,22 @@ import 'react-toastify/dist/ReactToastify.css'
 import style from './TaskForm.module.css'
 // Components
 import CustomSelect from '../CustomSelect.jsx'
-import { useStateManager } from 'react-select'
 
 const API_ENDPOINT = import.meta.env.VITE_API_ENDPOINT
 
-function TaskForm() {
+function TaskForm({forceUpdate}) {
 
     
 
     const priorityOptions = [
-        { value: "High", label: "Alta"},
-        { value: "Medium", label: "Media"},
-        { value: "Low", label: "Baja"},
+        { value: "Alta", label: "Alta"},
+        { value: "Media", label: "Media"},
+        { value: "Baja", label: "Baja"},
     ]
     const stateOptions = [
-        { value: "New", label: "Nueva"},
-        { value: "InProgress", label: "En proceso"},
-        { value: "Finished", label: "Finalizada"},
+        { value: "Nueva", label: "Nueva"},
+        { value: "En proceso", label: "En proceso"},
+        { value: "Terminada", label: "Finalizada"},
     ]
     
 
@@ -63,6 +62,7 @@ function TaskForm() {
         .then(
             response => toast(response.data.message)
         )
+        .finally ( forceUpdate )
     }
     const formik = useFormik({ initialValues, validationSchema, onSubmit })
     const { handleSubmit, handleChange, values, errors, handleBlur, touched } = formik

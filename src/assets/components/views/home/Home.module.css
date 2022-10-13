@@ -21,6 +21,7 @@
 .tasksContainer{
     width: 90%;
     min-width: 250px;
+    min-height: 100vh;
     margin: 1rem;
     padding: 1rem;
     border-radius: var(--border-radius);
@@ -39,11 +40,9 @@
     .new,
     .process,
     .finished{
-        display: flex;
+        display: block;
         flex-wrap: wrap;;
         list-style: none;
-        overflow: hidden;
-        cursor: pointer;
         padding: .5rem;
         margin: .5rem;
         border-radius: var(--border-radius);

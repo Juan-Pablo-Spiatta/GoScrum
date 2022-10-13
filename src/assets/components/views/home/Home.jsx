@@ -1,5 +1,5 @@
 // Libraries
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useReducer } from 'react'
 import axios from 'axios'
 import Swal from 'sweetalert2'
 import Skeleton from 'react-loading-skeleton'
@@ -15,22 +15,35 @@ const API_ENDPOINT = import.meta.env.VITE_API_ENDPOINT
 
 
 function Home() {
-  const [loading, setLoading] = useState(false)
+  const [loading, setLoading] = useState(true)
   const [tasks, setTasks] = useState({new: [], inProgress: [], finished: []})
-  
-  useEffect(() => {
+  const [reRender, forceUpdate] = useReducer( x => x + 1, 0)
+
+  const handleReRender = () => {
+    console.log("hola juan")
+    forceUpdate()
+  }
+
+  const fetchAPI = async () => {
     axios({
-        method: 'get',
-        url: `${ API_ENDPOINT }api/team/tasks/${localStorage.getItem('teamID')}`,
-      })
-      .then( response => setTasks(response.data) )
-      .catch( error => Swal.fire(error.response.data) )
-  }, [])
+      method: 'get',
+      url: `${ API_ENDPOINT }api/team/tasks/${localStorage.getItem('teamID')}`,
+    })
+    .then( response => setTasks(response.data) )
+    .catch( error => Swal.fire(error.response.data) )
+    setTimeout(() => {
+      setLoading(false)
+    }, 400);
+  }
+
+  useEffect(() => {
+    fetchAPI()
+  }, [reRender])
 
   return (
     <main className={ style.container }>
       <section className={ style.createTasksContainer }>
-        <TaskForm />
+        <TaskForm forceUpdate={handleReRender}/>
       </section>
       <section className={ style.tasksContainer }>
         <h2 className={ style.title }>Mis Tareas</h2>
@@ -39,14 +52,9 @@ function Home() {
             <h4>Nuevas</h4>
             <ul className={ style.new }>
                 {
-                  tasks.new.map( task => (
-                    loading ? <Skeleton 
-                      borderRadius={100}
-                      sx={{ bgcolor: 'grey.900' }}
-                      width={50}
-                      height={50}
-                    /> 
-                    : <Tasks key={task.id} data={task}/> 
+                  tasks.new.map( (task, index) => (
+                    loading ? <Skeleton key={index} style={{margin:".5rem", padding: "1rem"}} width={"100%"} /> 
+                    : <Tasks key={index} data={task} forceUpdate={handleReRender}/> 
                   ))
                 }
             </ul>
@@ -55,8 +63,8 @@ function Home() {
             <h4>En proceso</h4>
             <ul className={ style.process }>
                 {
-                  tasks.inProgress.map( task => (
-                    loading ? <Skeleton height={100} width={350} /> : <Tasks key={task.id} data={task}/>
+                  tasks.inProgress.map( (task, index) => (
+                    loading ? <Skeleton key={index} style={{margin:".5rem", padding: "1rem"}} width={"100%"} /> : <Tasks key={index} data={task} forceUpdate={handleReRender}/>
                   ))
                 }
             </ul>
@@ -65,8 +73,8 @@ function Home() {
             <h4>Finalizadas</h4>
             <ul className={ style.finished }>
                 {
-                  tasks.finished.map( task => (
-                    loading ? <Skeleton height={100} width={200} /> : <Tasks key={task.id} data={task}/>
+                  tasks.finished.map( (task, index) => (
+                    loading ? <Skeleton key={index} style={{margin:".5rem", padding: "1rem"}} width={"100%"} /> : <Tasks key={index} data={task} forceUpdate={handleReRender}/>
                   ))
                 }
             </ul>

@@ -1,7 +1,7 @@
 import React from 'react'
 import Select from 'react-select'
 
-function CustomSelect({ options, onChange, value }) {
+function CustomSelect({ options, onChange, value, placeholder, def }) {
     const customStyles = {
         option: (styles, state) => ({
           ...styles,
@@ -18,8 +18,9 @@ function CustomSelect({ options, onChange, value }) {
     return (
         <>
             <Select 
-                placeholder="Seleccionar"
-                value={ defaultValue(options,value) }
+                placeholder={ placeholder ? placeholder : "Selecionar" }
+                defaultValue={ { label: def, value: def }}
+                value={ defaultValue(options, value) }
                 onChange= { value => onChange(value) }
                 options={ options } 
                 theme={(theme) => ({
