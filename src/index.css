@@ -27,6 +27,10 @@
   --state-progress-2: #ffdaa2;
   --state-finished: #66bb6a;
   --state-finished-2: #a9e4ac;
+
+  --priority-low: #66bb6a;
+  --priority-medium: #ffa726;
+  --priority-high: #f33022;
 }
 
 *{

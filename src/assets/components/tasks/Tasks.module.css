@@ -81,11 +81,51 @@
 .statusContainer{
     display: flex;
 }   
-    .priority,
-    .state{
+    .priorityLow{
         margin-right: .3rem;
         padding: .3rem;
-        background-color: var(--button-background-color);
+        background-color: var(--priority-low);
+        border-radius: var(--border-radius);
+        border: none;
+        color: var(--button-color);
+    }
+    .priorityMedium{
+        margin-right: .3rem;
+        padding: .3rem;
+        background-color: var(--priority-medium);
+        border-radius: var(--border-radius);
+        border: none;
+        color: var(--button-color);
+    }
+    .priorityHigh{
+        position: relative;
+        margin-right: .3rem;
+        padding: .3rem;
+        background-color: var(--priority-high);
+        border-radius: var(--border-radius);
+        border: none;
+        color: var(--button-color);
+    }
+    .stateNew{
+        margin-right: .3rem;
+        padding: .3rem;
+        background-color: var(--state-new);
+        border-radius: var(--border-radius);
+        border: none;
+        color: var(--button-color);
+    }
+    .stateProgress{
+        margin-right: .3rem;
+        padding: .3rem;
+        background-color: var(--state-progress);
+        border-radius: var(--border-radius);
+        border: none;
+        color: var(--button-color);
+    }
+    .stateFinished{
+        margin-right: .3rem;
+        padding: .3rem;
+        background-color: var(--state-finished);
         border-radius: var(--border-radius);
         border: none;
         color: var(--button-color);

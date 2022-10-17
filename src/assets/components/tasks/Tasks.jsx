@@ -144,7 +144,7 @@ function Tasks({data = {}, forceUpdate}) {
                                 id='priority'
                                 options={ priorityOptions } 
                                 value = { data.priority }
-                                onChange = { value => formik.setFieldValue('priority', value.value) }
+                                onChange = { value => formik.setFieldValue('priority', value.value) }s
                             />
                         </div>
                     </div>
@@ -188,8 +188,18 @@ function Tasks({data = {}, forceUpdate}) {
                 <h5 className={ style.date }>{data.dateEdit}</h5>
                 <h6 className={ style.owner }>Creada por: {data.owner}</h6>
                 <div className={ style.statusContainer }>
-                    <button className={ style.state }>{ data.newState? data.newState : data.state }</button>
-                    <button className={ style.priority }>{data.priority}</button>
+                    { data.state==="Nueva"? 
+                        <button className={ style.stateNew }>{ data.newState? data.newState : data.state }</button>
+                        :  data.state==="En proceso"? 
+                            <button className={ style.stateProgress }>{ data.newState? data.newState : data.state }</button>
+                            : <button className={ style.stateFinished }>{ data.newState? data.newState : data.state }</button>
+                    }
+                    { data.priority==="Baja"?
+                        <button className={ style.priorityLow }>{data.priority}</button>
+                        : data.priority==="Media"? 
+                            <button className={ style.priorityMedium }>{data.priority}</button>
+                            : <button className={ style.priorityHigh }>{data.priority}</button>
+                    }
                 </div>
                 {
                     String(data.description).length >= 120? 
