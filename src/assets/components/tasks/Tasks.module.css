@@ -7,11 +7,6 @@
     margin: 5px 0;
     animation: appear ease 1s ;
 }
-.firstLineContainer{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
     .titleContainer{
         display: flex;
         align-items: center;
@@ -19,6 +14,21 @@
     .buttonsContainer{
         display: flex;
     }
+    .buttonsEditContainer{
+        display: flex;
+        flex-direction: column;
+    }
+        .buttonsEditContainer > button{
+            border: none;
+            outline: none;
+            cursor: pointer;
+            color: var(--button-color);
+            border-radius: var(--border-radius);
+            background-color: var(--button-background-color);
+            height: 28px;
+            padding: 5px;
+            margin-top: .5rem;
+        }
         .title{
             font-weight: 600;
         }
@@ -26,13 +36,13 @@
             cursor: pointer;
             width: 16px;
             height: 16px;
-            margin: .4rem;
+            margin: 6px;
         }
         .deleteIcon{
             cursor: pointer;
-            width: 20px;
-            height: 20px;
-            margin: .4rem;
+            width: 18px;
+            height: 18px;
+            margin: 5px;
         }
         .editButton{
             display: flex;
@@ -43,10 +53,9 @@
             cursor: pointer;
             width: 28px;
             height: 28px;
-            border-radius: 100%;
+            border-radius: var(--border-radius);
             background-color: var(--button-background-color);
             margin-left: .25rem;
-
         }
         .deleteButton{
             text-align: center;
@@ -58,17 +67,16 @@
             font-weight: 900;
             width: 28px;
             height: 28px;
-            border-radius: 100%;
-            color: var(--button-color);
+            border-radius: var(--border-radius);
             background-color: var(--button-background-color);
             margin-left: .25rem;
             font-size: 1rem;
         }
 .date{
-    margin: 2px;
+
 }
 .owner{
-    margin: 2px;    
+    margin: .5rem 0;   
 }
 .statusContainer{
     display: flex;
@@ -84,8 +92,54 @@
     }
 
 .description{
-    overflow: hidden;
+    width: 100%;
+    margin: .5rem 0; 
 }
+.showMoreButton{
+    border: none;
+    outline: none;
+    background-color: transparent;
+    font-weight: bold;
+    cursor: pointer;
+    text-decoration: underline;
+    color: var(--button-background-color);
+    font-size: 1rem;
+}
+
+/*Edit UI*/
+.firstLineContainer{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: .5rem;
+}
+    .firstLineContainer > h4{
+        border-radius: var(--border-radius);
+        font-weight: 400;
+        font-size: 15px;
+    }
+    .titleInput{
+        display: flex;
+        outline: none;
+        border: var(--input-border);
+        border-radius: var(--border-radius);
+        padding: 7px 10px;
+        font-size: 1rem;
+    }
+    .selectContainer{
+        margin-right: 1rem;
+        margin-bottom: .5rem;
+    }
+    .descriptionInput{
+        display: flex;
+        outline: none;
+        resize: none;
+        border: var(--input-border);
+        border-radius: var(--border-radius);
+        width: 100%;
+        padding: .5rem;
+    }
+
 
 @keyframes appear {
     from{

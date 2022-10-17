@@ -1,5 +1,5 @@
 // Libraries
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useReducer } from 'react'
 import { useFormik } from 'formik'
 import * as Yup from 'yup'
 import { ToastContainer, toast } from 'react-toastify'
@@ -12,8 +12,7 @@ import CustomSelect from '../CustomSelect.jsx'
 
 const API_ENDPOINT = import.meta.env.VITE_API_ENDPOINT
 
-function TaskForm({forceUpdate}) {
-
+function TaskForm({forceUpdate, initialValues}) {
     const priorityOptions = [
         { value: "Alta", label: "Alta"},
         { value: "Media", label: "Media"},
@@ -25,13 +24,6 @@ function TaskForm({forceUpdate}) {
         { value: "Terminada", label: "Finalizada"},
     ]
     
-
-    const initialValues = {
-        title: "",
-        priority: "",
-        state: "",
-        description: ""
-    }
     const validationSchema = Yup.object().shape({
         title: Yup.string()
             .required('*El titulo es requerido'),
@@ -50,7 +42,7 @@ function TaskForm({forceUpdate}) {
             url: `${API_ENDPOINT}api/team/tasks/${sessionStorage.getItem('teamID')}`,
             data: {
                 title: values.title,
-                date: `${day}/${month}/${year} ${hours}:${minutes} hs`,
+                date: `Fecha de creación: ${day}/${month}/${year} ${hours}:${minutes}hs`,
                 owner: sessionStorage.getItem('userName'),
                 priority: values.priority,
                 state: values.state,
@@ -60,7 +52,7 @@ function TaskForm({forceUpdate}) {
         .then(
             response => toast(response.data.message)
         )
-        .finally ( forceUpdate )
+        .finally( forceUpdate )
     }
     const formik = useFormik({ initialValues, validationSchema, onSubmit })
     const { handleSubmit, handleChange, values, errors, handleBlur, touched } = formik
@@ -99,7 +91,7 @@ function TaskForm({forceUpdate}) {
                         options={ stateOptions }
                         value = { values.state }
                         onChange = { value => formik.setFieldValue('state', value.value) }    
-                        onBlur={ handleBlur }          
+                        onBlur={ handleBlur }    
                     />
                     { errors.state && touched.state && <span className={ style.errorMessage }> { errors.state } </span> }
                 </label>

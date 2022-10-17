@@ -45,7 +45,7 @@
         font-size: 15px;
     }
     .errorMessage{
-        color: var(--error-color);
+        color: var(--danger-color);
         font-weight: 600;
         font-size: 12px;
     }
@@ -71,6 +71,7 @@
 }
     .buttonContainer > button{
         border: none;
+        cursor: pointer;
         background-color: var(--button-background-color);
         border-radius: var(--border-radius);
         color: var(--button-color);

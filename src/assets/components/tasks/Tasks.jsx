@@ -18,6 +18,7 @@ const API_ENDPOINT = import.meta.env.VITE_API_ENDPOINT
 
 function Tasks({data = {}, forceUpdate}) {
     const [editingTask, setEditingTask] = useState(false)
+    const [showDescription, setShowDescription] = useState(false)
 
     const initialValues = {
         state: data.state,
@@ -30,8 +31,15 @@ function Tasks({data = {}, forceUpdate}) {
         id: data.id,
     }
 
+    const handleShowMore = () => {
+        setShowDescription(!showDescription)
+    } 
+
     const onSubmit = () => {
         editTask()
+        const date = new Date()
+        const [ day, month, year ] = [ date.getDate(), date.getMonth() + 1, date.getFullYear() ]
+        const [ hours, minutes ] = [ date.getHours(), date.getMinutes()<10 ? `0${date.getMinutes()}` : `${date.getMinutes()}` ]
         axios({
             method: 'put',
             url: `${API_ENDPOINT}api/team/tasks`,
@@ -45,7 +53,8 @@ function Tasks({data = {}, forceUpdate}) {
                     description: values.description,
                     title: values.title,
                     owner: values.owner,
-                    date: values.date,
+                    date: `Fecha de creacion: ${values.date}`,
+                    dateEdit: `Ultima edicion: ${day}/${month}/${year} ${hours}:${minutes}hs`,
                     id: values.id,
                 }
             }
@@ -102,34 +111,47 @@ function Tasks({data = {}, forceUpdate}) {
             <>
                 <form onSubmit={ handleSubmit } className={ style.taskCard }>
                     <div className={ style.firstLineContainer }>
-                        <input 
-                            type="text"
-                            id='title'
-                            name='title' 
-                            value={ values.title }
-                            onChange={ handleChange }
-                        />
-                        <button type='submit' > Guardar </button>
+                        <div>
+                            <h4>Titulo</h4>
+                            <input 
+                                className={ style.titleInput }
+                                type="text"
+                                id='title'
+                                name='title' 
+                                defaultValue={ values.title }
+                                onChange={ handleChange }
+                            />
+                        </div>
+                        <div className={ style.buttonsEditContainer }>
+                            <button type='submit' className={ style.saveButton } > Guardar </button>
+                            <button onClick={ () => setEditingTask(false) } className={ style.cancelButton } > Cancelar </button>
+                        </div>
                     </div>
-                    <h5 className={ style.date }>Fecha de creación: {data.date}</h5>
-                    <h6 className={ style.owner }>Creada por: {data.owner}</h6>
                     <div className={ style.statusContainer }>
-                        <CustomSelect 
-                            id='newState'
-                            options={ stateOptions } 
-                            value = { values.newState }
-                            onChange = { value => formik.setFieldValue('newState', value.value) }
-                            def={ values.state }
-                        />
-                        <CustomSelect 
-                            id='priority'
-                            options={ priorityOptions } 
-                            value = { values.priority }
-                            onChange = { value => formik.setFieldValue('priority', value.value) }
-                        />
+                        <div className={ style.selectContainer }>
+                            <h4>Estado</h4>
+                            <CustomSelect 
+                                id='newState'
+                                options={ stateOptions } 
+                                value = { data.newState }
+                                onChange = { value => formik.setFieldValue('newState', value.value) }
+                                def={ data.state }
+                            />
+                        </div>
+                        <div className={ style.selectContainer }>
+                            <h4>Prioridad</h4>
+                            <CustomSelect 
+                                id='priority'
+                                options={ priorityOptions } 
+                                value = { data.priority }
+                                onChange = { value => formik.setFieldValue('priority', value.value) }
+                            />
+                        </div>
                     </div>
                     <div className={ style.description }>
+                        <h4>Descripcion:</h4>
                         <textarea 
+                            className={ style.descriptionInput }
                             name="description" 
                             id="description" 
                             cols="30" 
@@ -156,21 +178,35 @@ function Tasks({data = {}, forceUpdate}) {
                                 <img className={ style.editIcon } src={editIcon} alt="edit-icon" />
                             </button>
                             <button onClick={ deleteTask } className={ style.deleteButton }>
-                                <p>x</p>
+                                <img className={ style.deleteIcon } src={ trashIcon } alt="" />
                             </button>
                         </div>
                         : <></>
                     }
                 </div>
-                <h5 className={ style.date }>Fecha de creación: {data.date}</h5>
+                <h5 className={ style.date }>{data.date}</h5>
+                <h5 className={ style.date }>{data.dateEdit}</h5>
                 <h6 className={ style.owner }>Creada por: {data.owner}</h6>
                 <div className={ style.statusContainer }>
                     <button className={ style.state }>{ data.newState? data.newState : data.state }</button>
                     <button className={ style.priority }>{data.priority}</button>
                 </div>
-                <p className={ style.description }>
-                    {String(data.description).substring(0, 120)}...
-                </p>
+                {
+                    String(data.description).length >= 120? 
+                        showDescription? 
+                        <p className={ style.description }>
+                            {data.description} 
+                            <button className={ style.showMoreButton } onClick={ handleShowMore }>ver menos</button>
+                        </p>
+                        : 
+                        <p className={ style.description }>
+                            {String(data.description).substring(0, 120)}
+                            <button className={ style.showMoreButton } onClick={ handleShowMore }>ver mas...</button>
+                        </p>
+                    :  <p className={ style.description }>
+                        {data.description}
+                    </p> 
+                }
             </li>
         )
     }

@@ -82,16 +82,16 @@ function Register() {
     const errorMessages = {
         userName: {
             required: "*Ingrese un nombre de usuario",
-            length: "*Deve contener 4 caracteres como minimo"
+            length: "*Debe contener 4 caracteres como minimo"
         },
         password: {
             required: "*Ingrese una contraseña",
-            length: "*Deve contener 6 caracteres como minimo",
-            format: "*Deve contener almenos una mayuscula y un numero"
+            length: "*Debe contener 6 caracteres como minimo",
+            format: "*Debe contener almenos una mayuscula y un numero"
         },
         email: {
             required: "*Ingrese una direccion de correo",
-            format: "*Deve tener el siguiente formato example@mail.com"
+            format: "*Debe tener el siguiente formato example@mail.com"
         }
     }
 

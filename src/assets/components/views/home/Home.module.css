@@ -46,6 +46,11 @@
     }
 
 
+    .newTasksButton,
+    .inProgressTasksButton,
+    .finishedTasksButton{
+        cursor: pointer;    
+    }
     .newTasksButton{
         background-color: var(--state-new);
     }

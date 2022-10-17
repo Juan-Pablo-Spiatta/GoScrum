@@ -1,5 +1,5 @@
 // Libraries
-import React from 'react'
+import { useState } from 'react'
 import { useFormik } from 'formik'
 import { Link, useNavigate } from 'react-router-dom'
 import * as Yup from 'yup'
@@ -11,6 +11,7 @@ import style from './Login.module.css'
 const API_ENDPOINT = import.meta.env.VITE_API_ENDPOINT
 
 function Login() {
+  const [chargeButton, setChargeButton] = useState(false)
 
   const navigate = useNavigate()
   
@@ -26,8 +27,9 @@ function Login() {
     })
 
 
-  const onSubmit = () => {
-    axios({
+  const onSubmit = async () => {
+    setChargeButton(true)
+    await axios({
       method: 'post',
       url: `${ API_ENDPOINT }api/users`,
       data: {
@@ -35,17 +37,18 @@ function Login() {
         password: values.password
       }
     })
-    .then(
-        response => {
-          if (response.status === 200) {
-            sessionStorage.setItem('logged', 'yes')
-            sessionStorage.setItem('teamID', response.data.teamID)
-            sessionStorage.setItem('userName', response.data.userName)
-            navigate("/GoScrum/")
-          }
+    .then( response => 
+      {
+        if (response.status === 200) {
+          sessionStorage.setItem('logged', 'yes')
+          sessionStorage.setItem('teamID', response.data.teamID)
+          sessionStorage.setItem('userName', response.data.userName)
+          navigate("/GoScrum/")
         }
-        )
+      }
+    )
     .catch( error => Swal.fire(error.response.data) )
+    setChargeButton(false)
   }
   
   const formik = useFormik( {initialValues, validationSchema, onSubmit} )
@@ -81,7 +84,10 @@ function Login() {
                 { errors.password && touched.password && <span className={ style.errorMessage }>{ errors.password }</span> }
             </label>
             <div className={ style.buttonContainer }> 
-              <button type='submit'> Enviar </button> 
+              { chargeButton? <div className={ style.loadingContainer }> 
+                <div className={ style.loading }></div>
+              </div>  
+              : <button type='submit'> Enviar </button> }
             </div>
             <Link className={ style.registerLink } to="/GoScrum/register">Registrarme</Link>
         </form>

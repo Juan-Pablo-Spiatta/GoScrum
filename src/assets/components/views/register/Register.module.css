@@ -58,7 +58,7 @@
         font-size: 15px;
     }
     .errorMessage{
-        color: var(--error-color);
+        color: var(--danger-color);
         font-weight: 600;
         font-size: 12px;
     }

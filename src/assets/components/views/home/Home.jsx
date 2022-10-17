@@ -24,7 +24,7 @@ function Home() {
   const [renderFinishedTasks, setRenderFinishedTasks] = useState(false)
 
   const handleReRender = () => {
-    console.log("hola juan")
+    console.log(reRender)
     forceUpdate()
   }
 
@@ -48,7 +48,7 @@ function Home() {
   return (
     <main className={ style.container }>
       <section className={ style.createTasksContainer }>
-        <TaskForm forceUpdate={handleReRender}/>
+        <TaskForm forceUpdate={handleReRender} initialValues={ {title: "", priority: "", state: "", description: ""} } />
       </section>
       <section className={ style.tasksContainer }>
         <h2 className={ style.title }>Mis Tareas</h2>
