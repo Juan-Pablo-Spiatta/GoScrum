@@ -9,6 +9,7 @@ import Home from './assets/components/views/home/Home.jsx'
 import Loading from './assets/components/views/loading/Loading.jsx'
 import EditTask from './assets/components/views/editTask/EditTask.jsx'
 import Header from './assets/components/header/Header.jsx'
+import Probando from '../../probando/src/Probando.jsx' 
 // Lazy Imports
 const Error404 = lazy( () => import('./assets/components/views/error404/Error404.jsx'))
 // Style
@@ -60,7 +61,7 @@ function App() {
               <EditTask />
             </motion.div> 
           }/>
-          <Route path="*" element={ 
+          <Route path="/GoScrum/*" element={ 
             <Suspense fallback={ 
               <motion.div className='page' initial='out' animate='in' exit='out' variants={ pageTransition } >
                 <Loading /> 
